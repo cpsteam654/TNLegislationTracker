@@ -1,0 +1,81 @@
+# CPS Legislation Tracker: update the bills and publish the site.
+#
+# Runs on its own at 9am, noon and 5pm Central (a few minutes past, when
+# GitHub is less busy), and also whenever someone changes the site files.
+# You can run it by hand from the Actions tab with "Run workflow".
+
+name: Update bills and publish
+
+on:
+  schedule:
+    - cron: '7 9 * * *'
+      timezone: 'America/Chicago'
+    - cron: '7 12 * * *'
+      timezone: 'America/Chicago'
+    - cron: '7 17 * * *'
+      timezone: 'America/Chicago'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Get the tracker files
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Pull the latest Tennessee bills from LegiScan
+        id: update
+        if: github.event_name != 'push'
+        continue-on-error: true
+        env:
+          LEGISCAN_API_KEY: ${{ secrets.LEGISCAN_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: node scripts/update.mjs
+
+      - name: Save the new bill data
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "CPS tracker bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data
+          if [ -d cache ]; then git add cache; fi
+          if git diff --cached --quiet; then
+            echo "No bill changes this time."
+          else
+            git commit -m "Bill update $(TZ=America/Chicago date '+%b %-d, %-I:%M %p') Central"
+            git push
+          fi
+
+      - name: Get the site ready to publish
+        uses: actions/configure-pages@v5
+
+      - name: Package the site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Publish to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
