@@ -1,0 +1,78 @@
+/* Standalone page: the base colors the Claude host used to supply, a
+   full-window layout, the opening (sign-in) page, and your name in the bar. */
+:root {
+  --color-fg: #0E1836; --color-fg-muted: #5B6886; --color-bg: #EEF3FA; --color-panel: #FFFFFF; --color-border-line: #DCE3EE;
+  --color-ok: #1F7A4D; --color-warn: #083995; --color-bad: #C0392B;
+  --font-anthropic-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; --font-anthropic-serif: Georgia, serif;
+  --cds-radius: 10px; --cds-text-secondary: #5B6886; --cds-surface-popover: #FFFFFF; --cds-border: #DCE3EE;
+  --cds-shadow-popover: 0 6px 20px rgba(1, 16, 59, .14); --cds-chart-axis: #CFD6E3; --cds-dur-slow: .3s; --cds-ease-out: ease-out;
+}
+html, body { margin: 0; background: #F3F7FC; }
+#dash-root { min-height: 100vh; }
+.cps-app { min-height: 100vh; border: 0; border-radius: 0; box-shadow: none; }
+.cps-side-in { position: sticky; top: 0; }
+
+.dash-select {
+  appearance: none; -webkit-appearance: none; font: inherit; font-size: 13px; color: var(--color-fg);
+  padding: 7px 30px 7px 11px; border: 1px solid var(--color-border-line); border-radius: 9px;
+  background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235B6886' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 11px center;
+}
+.dash-select:focus-visible { outline: 2px solid #53A2EF; outline-offset: 1px; }
+.dash-skeleton { color: transparent !important; border-radius: 6px; background: linear-gradient(90deg, #E7EDF6, #F4F7FB, #E7EDF6); background-size: 200% 100%; animation: cps-shimmer 1.2s linear infinite; }
+@keyframes cps-shimmer { to { background-position: -200% 0; } }
+
+/* your name and sign out, at the right of the brand bar */
+.cps-who { margin-left: auto; display: flex; align-items: center; gap: 14px; font-size: 13.5px; color: rgba(255, 255, 255, .78); white-space: nowrap; }
+.cps-who b { font-weight: 600; color: #FFFFFF; }
+.cps-who button { appearance: none; border: 1px solid rgba(255, 255, 255, .28); background: none; color: #9CD7F7; font: inherit; font-size: 12.5px; font-weight: 600; padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.cps-who button:hover { background: rgba(255, 255, 255, .08); }
+@container (max-width: 560px) { .cps-who { margin-left: 0; flex: 1 1 100%; justify-content: space-between; } }
+
+/* opening page */
+body.is-locked { overflow: hidden; }
+body.is-locked #dash-root { visibility: hidden; }
+.cps-gate {
+  position: fixed; inset: 0; z-index: 50; overflow: auto; display: grid; place-items: center; padding: 32px 18px;
+  font-family: "Inter", system-ui, sans-serif; color: #0E1836;
+  background:
+    linear-gradient(180deg, rgba(1, 16, 59, .96) 0%, rgba(4, 26, 90, .9) 38%, rgba(8, 57, 149, .72) 70%, rgba(83, 162, 239, .55) 100%),
+    url("../assets/capitol.jpg") center 35% / cover no-repeat, #01103B;
+}
+.cps-gate[hidden] { display: none; }
+.cps-gate-in { width: min(440px, 100%); display: grid; gap: 26px; justify-items: center; }
+.cps-gate-brand { display: flex; align-items: center; gap: 18px; color: #FFFFFF; }
+.cps-gate-logo { display: block; height: 26px; aspect-ratio: 720 / 59; background: url("../assets/cps-logo-white.png") left center / contain no-repeat; }
+.cps-gate-div { width: 1px; height: 28px; background: rgba(255, 255, 255, .3); }
+.cps-gate-product { display: flex; align-items: center; gap: 10px; margin: 0; font-family: "Outfit", "Inter", sans-serif; font-size: 18px; font-weight: 500; white-space: nowrap; }
+.cps-gate-product svg { width: 24px; height: 24px; }
+.cps-gate-card { width: 100%; box-sizing: border-box; padding: 30px 30px 26px; background: #FFFFFF; border-radius: 18px; box-shadow: 0 24px 60px rgba(1, 16, 59, .35); }
+.cps-gate-card form, .cps-gate-wait { display: grid; gap: 16px; margin: 0; }
+.cps-gate-card form[hidden], .cps-gate-wait[hidden] { display: none; }
+.cps-gate-card h1 { margin: 0; font-family: "Outfit", "Inter", sans-serif; font-size: 24px; font-weight: 600; color: #01103B; letter-spacing: -.01em; }
+.cps-gate-sub { margin: -6px 0 0; font-size: 14px; line-height: 1.5; color: #5B6886; }
+.cps-gate-sub b { color: #0E1836; font-weight: 600; word-break: break-all; }
+.cps-gate-fld { display: grid; gap: 6px; font-size: 12.5px; font-weight: 600; color: #5B6886; }
+.cps-gate-fld[hidden] { display: none; }
+.cps-gate-fld select, .cps-gate-fld input { font: inherit; font-size: 15px; font-weight: 400; color: #0E1836; padding: 11px 12px; border: 1px solid #CFD8E6; border-radius: 10px; background-color: #FFFFFF; }
+.cps-gate-fld select { appearance: none; -webkit-appearance: none; padding-right: 36px; background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235B6886' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center; }
+.cps-gate-fld input#gate-otp { font-size: 22px; letter-spacing: .3em; text-align: center; }
+.cps-gate-fld select:focus-visible, .cps-gate-fld input:focus-visible { outline: 2px solid #53A2EF; outline-offset: 1px; border-color: #53A2EF; }
+.cps-gate-btn { appearance: none; border: 0; cursor: pointer; padding: 12px 16px; border-radius: 10px; background: #083995; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600; }
+.cps-gate-btn:hover { background: #0B47B8; }
+.cps-gate-btn:disabled { opacity: .6; cursor: progress; }
+.cps-gate-links { display: flex; justify-content: space-between; gap: 12px; margin: 0; }
+.cps-gate-links button { appearance: none; border: 0; background: none; padding: 0; cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; color: #083995; }
+.cps-gate-links button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cps-gate-msg, .cps-gate-wait { margin: 0; min-height: 1em; font-size: 13px; line-height: 1.5; color: #5B6886; }
+.cps-gate-msg.is-bad, .cps-gate-wait.is-bad { color: #B23A36; }
+.cps-gate-foot { margin: 0; font-size: 12.5px; color: rgba(255, 255, 255, .72); text-align: center; }
+@media (max-width: 520px) {
+  .cps-gate-brand { flex-direction: column; gap: 10px; }
+  .cps-gate-div { display: none; }
+  .cps-gate-card { padding: 24px 20px 20px; }
+}
+
+/* keep the menu in view while the page scrolls */
+.cps-app, .cps-side { overflow: visible; }
+.cps-side-in { position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
+@container (max-width: 860px) { .cps-side-in { position: static; max-height: none; overflow: visible; } }

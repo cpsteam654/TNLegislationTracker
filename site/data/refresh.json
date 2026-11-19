@@ -1,0 +1,13 @@
+{
+ "rows": [
+  {
+   "id": "latest",
+   "status": "waiting",
+   "message": "Waiting for the first scheduled update",
+   "last_success": "",
+   "last_run": "",
+   "new_bills": 0,
+   "updated_bills": 0
+  }
+ ]
+}

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>CPS Legislation Tracker</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/site.css">
+<script src="vendor/d3.min.js"></script>
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="js/runtime.js"></script>
+</head>
+<body class="is-locked">
+<div id="dash-root">
+<div class="cps" id="cps">
+<div class="cps-app">
+  <header class="cps-appbar">
+    <span class="cps-applogo" role="img" aria-label="Cooley Public Strategies"></span>
+    <span class="cps-appdiv" aria-hidden="true"></span>
+    <div class="cps-product"><svg class="cps-product-mark" viewBox="-40 -40 80 80" aria-hidden="true"><circle r="39" fill="#fff"/><circle r="35.5" fill="#083995"/><path fill="#fff" d="M-0.46 1.43 -0.46 13.78 11.28 17.59 -0.46 21.41 -0.46 33.76 -7.72 23.77 -19.47 27.59 -12.21 17.59 -19.47 7.60 -7.72 11.42ZM-1.00 -1.11 -11.70 -7.29 -20.88 0.97 -18.31 -11.11 -29.01 -17.28 -16.72 -18.57 -14.16 -30.66 -9.13 -19.37 3.15 -20.66 -6.03 -12.40ZM1.47 -0.31 12.16 -6.49 9.60 -18.57 18.77 -10.30 29.47 -16.48 24.45 -5.20 33.63 3.07 21.34 1.78 16.32 13.06 13.75 0.98Z"/></svg><p class="cps-product-t">Legislation Tracker</p></div>
+    <div class="cps-who"><span>Signed in as <b id="cps-who-name"></b></span><button type="button" id="cps-signout">Sign out</button></div>
+  </header>
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="cps-side" id="sidebar">
+    <div class="cps-side-in">
+      <div class="cps-brand">
+        <span class="cps-logo" role="img" aria-label="Cooley Public Strategies"></span>
+        <p class="cps-brand-sub"><svg class="cps-emblem" viewBox="-40 -40 80 80" aria-hidden="true"><circle r="39" fill="#fff"/><circle r="36" fill="#002d65"/><path fill="#fff" d="M-0.46 1.43 -0.46 13.78 11.28 17.59 -0.46 21.41 -0.46 33.76 -7.72 23.77 -19.47 27.59 -12.21 17.59 -19.47 7.60 -7.72 11.42ZM-1.00 -1.11 -11.70 -7.29 -20.88 0.97 -18.31 -11.11 -29.01 -17.28 -16.72 -18.57 -14.16 -30.66 -9.13 -19.37 3.15 -20.66 -6.03 -12.40ZM1.47 -0.31 12.16 -6.49 9.60 -18.57 18.77 -10.30 29.47 -16.48 24.45 -5.20 33.63 3.07 21.34 1.78 16.32 13.06 13.75 0.98Z"/></svg><span><b>Tennessee</b>Legislation Tracker</span></p>
+      </div>
+
+      <div class="cps-side-nav">
+        <nav class="cps-nav" role="tablist" aria-label="Tracker sections">
+          <button type="button" class="cps-tab" role="tab" data-tab="home" aria-selected="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 4l8.5 6.5 M5.5 9v11h13V9 M10 20v-5.5h4V20"/></svg>
+            <span>Home</span>
+          </button>
+          <button type="button" class="cps-tab" role="tab" data-tab="bills" aria-selected="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7l4.5 4.5v12.5h-11.5z M14 3.5V8h4.5 M10 12.5h5.5 M10 16h5.5"/></svg>
+            <span>Bills</span><em data-draw="nav-bills" data-source="summary" data-field="bills" data-row="0">—</em>
+          </button>
+          <button type="button" class="cps-tab" role="tab" data-tab="clients" aria-selected="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></svg>
+            <span>Clients</span><em data-draw="nav-clients" data-source="client_counts">—</em>
+          </button>
+          <button type="button" class="cps-tab" role="tab" data-tab="themes" aria-selected="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11 M12 20V4.5 M19 20v-6.5 M3.5 20.5h17"/></svg>
+            <span>Themes</span>
+          </button>
+          <button type="button" class="cps-tab" role="tab" data-tab="lawmakers" aria-selected="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5 M16 4.6a3.5 3.5 0 0 1 0 6.8 M18 14.8c1.9.7 3.1 2.5 3.5 5.2"/></svg>
+            <span>Lawmakers</span><em data-draw="nav-members" data-source="legislators">—</em>
+          </button>
+        </nav>
+      </div>
+
+      <div class="cps-side-clients">
+        <p class="cps-side-label">Client folders</p>
+        <ul class="cps-tree" data-draw="side-clients" data-source="client_counts"></ul>
+      </div>
+
+      <div class="cps-side-pins">
+        <p class="cps-side-label">★ CPS watch</p>
+        <ul class="cps-pins" data-draw="pins" data-source="bill_tracking bills"></ul>
+      </div>
+
+      <div class="cps-side-status">
+        <p><span data-draw="hh-updated" data-source="refresh">—</span></p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="cps-main">
+    <!-- ========== HOME ========== -->
+    <section class="cps-sec cps-home" id="home" data-panel>
+      <header class="cps-greet">
+        <div>
+          <h1 data-draw="h-greet" data-source="summary">—</h1>
+          <p>Here’s the latest from the Tennessee General Assembly.</p>
+        </div>
+      </header>
+
+      <div class="cps-hk" id="home-kpis">
+        <div class="cps-sky" data-draw="h-sky" data-source="summary" aria-hidden="true"></div>
+        <button type="button" class="cps-hkpi" data-go="bills">
+          <span class="cps-hkpi-v" data-draw="hk-bills" data-source="summary" data-field="bills" data-row="0">—</span>
+          <span class="cps-hkpi-l">Bills filed</span>
+          <span class="cps-hkpi-s">For the 2027 session</span>
+        </button>
+        <button type="button" class="cps-hkpi" data-go="bills">
+          <span class="cps-hkpi-v" data-draw="hk-week" data-source="bills">—</span>
+          <span class="cps-hkpi-l">Filed this week</span>
+          <span class="cps-hkpi-s">Since Monday</span>
+        </button>
+        <button type="button" class="cps-hkpi" data-go="clients">
+          <span class="cps-hkpi-v" data-draw="hk-tracked" data-source="tracking_summary" data-field="tracked" data-row="0">—</span>
+          <span class="cps-hkpi-l">Tracked bills</span>
+          <span class="cps-hkpi-s">In client folders</span>
+        </button>
+        <div class="cps-hkpi">
+          <span class="cps-hkpi-v" data-draw="h-countdown">—</span>
+          <span class="cps-hkpi-l"><span data-cd="before">Days until session</span><span data-cd="after" hidden>Days in session</span></span>
+          <span class="cps-hkpi-s">Session starts January 12</span>
+        </div>
+      </div>
+
+      <div class="cps-hrow">
+        <article class="cps-glass" id="home-latest">
+          <table class="cps-htable">
+            <thead><tr><th scope="col">Bill</th><th scope="col">Title</th><th scope="col">Sponsor</th><th scope="col">Filed</th><th scope="col">Status</th></tr></thead>
+            <tbody data-draw="h-filings" data-source="bills"></tbody>
+          </table>
+          <div class="cps-glass-foot"><button type="button" class="cps-more" data-go="bills">View all bills</button></div>
+        </article>
+        <div class="cps-hcol">
+          <article class="cps-glass" id="home-week">
+            <div class="cps-glass-head"><h2>Committee calendar</h2><span class="cps-week-range" data-draw="h-week-range" data-source="bill_tracking">—</span></div>
+            <div data-draw="h-week" data-source="bill_tracking bills"></div>
+          </article>
+          <article class="cps-glass" id="home-progress">
+            <div class="cps-glass-head"><h2>Bill progress</h2></div>
+            <div data-draw="h-progress" data-source="bills"></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="cps-hrow2">
+        <article class="cps-glass" id="home-sponsors">
+          <div class="cps-glass-head"><h2>Top sponsors</h2><button type="button" class="cps-more" data-go="lawmakers">All lawmakers</button></div>
+          <ul class="cps-hpeople" data-draw="h-sponsors" data-source="sponsors legislators"></ul>
+        </article>
+        <article class="cps-glass" id="home-themes">
+          <div class="cps-glass-head"><h2>Top themes</h2><button type="button" class="cps-more" data-go="themes">All themes</button></div>
+          <ul class="cps-hbars" data-draw="h-themes" data-source="topic_counts"></ul>
+        </article>
+      </div>
+
+      <section class="cps-hfeed" id="home-activity">
+        <h2 class="cps-feed-h">Activity</h2>
+        <ol class="cps-feed" data-draw="h-feed" data-source="activity legislators"></ol>
+      </section>
+    </section>
+
+    <!-- ========== BILLS ========== -->
+    <section class="cps-sec" id="bills" data-panel hidden>
+      <header class="cps-head">
+        <div>
+          <h1>Bills</h1>
+        </div>
+        <label class="cps-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" id="bill-search" placeholder="Search bills, sponsors or numbers" aria-label="Search bills"></label>
+      </header>
+
+      <div class="cps-kpis" id="insights">
+        <article class="cps-kpi" id="kpi-filed">
+          <div class="cps-kpi-top">
+            <div>
+              <p class="cps-kpi-l">Bills filed</p>
+              <p class="cps-kpi-v"><span class="dash-skeleton" data-draw="c-bills" data-source="summary" data-field="bills" data-row="0">—</span></p>
+            </div>
+            <div class="cps-spark" data-draw="c-spark" data-source="filing_days" role="img" aria-label="Bills filed by day"></div>
+          </div>
+          <p class="cps-kpi-s"><span data-draw="c-pairs" data-source="summary" data-field="pairs" data-row="0">—</span> filed in both chambers, newest <b data-draw="c-newest" data-source="summary" data-field="newest_bill" data-row="0">—</b></p>
+        </article>
+
+        <article class="cps-kpi" id="kpi-theme">
+          <div class="cps-kpi-top">
+            <div>
+              <p class="cps-kpi-l">Leading theme</p>
+              <p class="cps-kpi-v cps-kpi-vt"><span class="dash-skeleton" data-draw="c-theme" data-source="topic_counts" data-field="topic" data-row="0">—</span></p>
+            </div>
+            <div class="cps-ring" data-draw="c-theme-ring" data-source="topic_counts"></div>
+          </div>
+          <p class="cps-kpi-s"><span data-draw="c-theme-n" data-source="topic_counts" data-field="bills" data-row="0">—</span> of <span data-draw="c-theme-total" data-source="summary" data-field="bills" data-row="0">—</span> bills, cost of living <span data-draw="c-col-n" data-source="topic_counts" data-field="bills" data-where="topic=Cost of living">—</span></p>
+        </article>
+
+        <article class="cps-kpi" id="kpi-priority">
+          <div class="cps-kpi-top">
+            <div>
+              <p class="cps-kpi-l">Priority issues</p>
+              <p class="cps-kpi-v"><span class="dash-skeleton" data-draw="c-priority" data-source="summary" data-field="priority_bills" data-row="0">—</span><small> bills</small></p>
+            </div>
+          </div>
+          <ul class="cps-mini" data-draw="c-watch" data-source="focus_areas"></ul>
+        </article>
+
+        <article class="cps-kpi" id="kpi-watch">
+          <div class="cps-kpi-top">
+            <div>
+              <p class="cps-kpi-l">Tracked bills</p>
+              <p class="cps-kpi-v"><span class="dash-skeleton" data-draw="c-watched" data-source="tracking_summary" data-field="tracked" data-row="0">—</span><small> bills</small></p>
+            </div>
+          </div>
+          <ul class="cps-clients" data-draw="c-clients" data-source="client_counts"></ul>
+        </article>
+      </div>
+
+      <div class="cps-banner" id="watch-banner">
+        <span class="cps-banner-mark" aria-hidden="true">★</span>
+        <div class="cps-banner-txt">
+          <p class="cps-banner-eye">Priority issues</p>
+          <p><span data-variant="gaps">Nothing filed yet on <b data-draw="t-gaps" data-source="focus_areas" data-field="area">—</b>. </span><span data-variant="nogaps" hidden>Every priority issue now has at least one bill. </span><b data-draw="t-lead" data-source="focus_areas" data-field="area">—</b> leads your priority issues with <b data-draw="t-lead-n" data-source="focus_areas" data-field="bills">—</b> bills.</p>
+        </div>
+        <button type="button" class="cps-banner-btn" data-show-priority>View priority bills <span aria-hidden="true">›</span></button>
+      </div>
+
+      <article class="cps-card" id="bill-card">
+        <div class="cps-card-head">
+          <div>
+            <h2>All bills</h2>
+            <p class="cps-card-sub">Click any bill to see its summary, clients and hearing.</p>
+          </div>
+          <div class="cps-filters" id="bill-filters">
+            <select class="dash-select" data-draw="f-topic" aria-label="Topic" data-source="topic_counts"></select>
+            <select class="dash-select" data-draw="f-client" aria-label="Client" data-source="client_counts"></select>
+            <select class="dash-select" id="f-party" aria-label="Sponsor party">
+              <option value="">All parties</option>
+              <option value="Republican">Republican sponsor</option>
+              <option value="Democrat">Democratic sponsor</option>
+              <option value="Bipartisan">Bipartisan</option>
+            </select>
+            <select class="dash-select" data-draw="f-member" aria-label="Lawmaker" data-source="sponsors"></select>
+            <button type="button" class="cps-link-btn" id="f-clear">Clear</button>
+          </div>
+        </div>
+
+        <div class="cps-table-wrap">
+          <table class="cps-table" id="bill-table" data-source="bills" data-row-key="key" data-fetchpriority="high">
+            <thead>
+              <tr>
+                <th scope="col" data-field="title" id="th-bill"><button type="button" class="cps-sort" data-sort="bill">Bill</button></th>
+                <th scope="col" data-field="topics">Topics &amp; clients</th>
+                <th scope="col" data-field="house_sponsor">Sponsors</th>
+                <th scope="col" data-field="stage" id="th-filed" aria-sort="descending"><button type="button" class="cps-sort" data-sort="filed">Status</button></th>
+                <th scope="col" data-source="bill_tracking" data-field="hearing">Hearing</th>
+              </tr>
+            </thead>
+            <tbody data-draw="bill-rows"></tbody>
+          </table>
+        </div>
+        <div class="cps-empty" id="bills-empty" hidden>No bills match these filters. <button type="button" class="cps-link-btn" data-clear-filters>Clear filters</button></div>
+        <div class="cps-card-foot"><span>Showing <b data-draw="bill-shown">—</b> of <b data-draw="bill-total" data-source="summary" data-field="bills" data-row="0">—</b> bills</span><span class="cps-toast" id="cps-toast" hidden>That wasn’t saved. Only editors of this tracker can change the watch list.</span></div>
+      </article>
+    </section>
+
+    <!-- ========== CLIENTS ========== -->
+    <section class="cps-sec" id="clients" data-panel hidden>
+      <header class="cps-head">
+        <div>
+          <p class="cps-crumbs">Clients <span aria-hidden="true">/</span> <b data-draw="cl-crumb" data-source="client_counts">—</b></p>
+          <h1>Client folders</h1>
+          <p class="cps-head-sub">Every bill the team tags to a client lands in that client’s folder</p>
+        </div>
+        <form class="cps-newclient" id="client-form" autocomplete="off">
+          <input id="client-name" placeholder="New client name" aria-label="New client name">
+          <button type="submit" class="cps-btn cps-btn-primary">＋ New folder</button>
+          <span class="cps-err" hidden>Only editors can add clients.</span>
+        </form>
+      </header>
+
+      <div class="cps-folders" id="client-folders" data-draw="client-folders" data-source="client_counts legislators"></div>
+
+      <article class="cps-card" id="client-card">
+        <div class="cps-card-head">
+          <div class="cps-cl-title" data-draw="cl-head" data-source="client_counts"></div>
+          <div class="cps-seg" role="tablist" aria-label="Client bill view">
+            <button type="button" class="cps-seg-b" data-cl-view="all" aria-pressed="true">All bills</button>
+            <button type="button" class="cps-seg-b" data-cl-view="hearing" aria-pressed="false">Hearing set</button>
+          </div>
+        </div>
+        <div class="cps-table-wrap">
+          <table class="cps-table cps-cltable" id="client-table">
+            <thead><tr><th scope="col">Bill</th><th scope="col">Sponsors</th><th scope="col">Status</th><th scope="col">Committee hearing</th><th scope="col">Also tagged</th></tr></thead>
+            <tbody data-draw="client-bills" data-source="bills bill_tracking legislators"></tbody>
+          </table>
+        </div>
+        <div class="cps-card-foot"><span>Tag or untag a client from any bill’s <b>Edit clients, note &amp; hearing</b> button on the Bills page.</span></div>
+      </article>
+    </section>
+
+    <!-- ========== THEMES ========== -->
+    <section class="cps-sec" id="themes" data-panel hidden>
+      <header class="cps-head">
+        <div>
+          <h1>Themes &amp; committees</h1>
+          <p class="cps-head-sub">What lawmakers are filing, who is filing it, and where CPS issues will be heard</p>
+        </div>
+      </header>
+      <div class="cps-grid2">
+        <article class="cps-card cps-pad" id="topic-chart-panel">
+          <h2>Bills by topic</h2>
+          <p class="cps-card-sub">Colored by sponsor's party. A bill can carry two topics; priority issues are marked ★.</p>
+          <div class="cps-legend"><span><i style="background:var(--rep)"></i>Republican</span><span><i style="background:var(--dem)"></i>Democrat</span><span><i style="background:var(--bip)"></i>Bipartisan</span></div>
+          <div class="cps-chart" data-draw="topic-chart" data-source="topic_counts"></div>
+        </article>
+        <article class="cps-card cps-pad" id="sponsor-panel">
+          <h2>Top sponsors</h2>
+          <p class="cps-card-sub">Bills filed as prime sponsor so far</p>
+          <ol class="cps-spons" data-draw="sponsor-list" data-source="sponsors"></ol>
+        </article>
+      </div>
+      <article class="cps-card" id="committee-panel">
+        <div class="cps-card-head">
+          <div>
+            <h2>Where priority issues will likely be heard</h2>
+            <p class="cps-card-sub">Committees that have handled these issues in recent sessions, with chairs as the TGA site lists them today. 115th General Assembly assignments come after the session organizes in January.</p>
+          </div>
+        </div>
+        <div class="cps-table-wrap">
+          <table class="cps-table cps-ctable" id="venue-table">
+            <thead><tr><th scope="col">Issue</th><th scope="col">House committee</th><th scope="col">Senate committee</th><th scope="col">Bills filed</th></tr></thead>
+            <tbody data-draw="venue-rows" data-source="legislators focus_areas"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <!-- ========== LAWMAKERS ========== -->
+    <section class="cps-sec" id="lawmakers" data-panel hidden>
+      <header class="cps-head">
+        <div>
+          <h1>Lawmakers</h1>
+        </div>
+        <label class="cps-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input type="search" id="lm-search" placeholder="Name, city, county or committee" aria-label="Search lawmakers"></label>
+      </header>
+      <div class="cps-kpis cps-kpis-3">
+        <div class="cps-comp" id="composition" data-draw="composition" data-source="composition"></div>
+        <article class="cps-kpi" id="recent-outreach">
+          <p class="cps-kpi-l">Recent outreach</p>
+          <ol class="cps-recent" data-draw="recent-outreach" data-source="outreach"></ol>
+          <p class="cps-kpi-s" data-variant="nooutreach" hidden>Nothing logged yet. Open a profile and choose <b>Log outreach</b>.</p>
+        </article>
+      </div>
+      <article class="cps-card" id="member-card">
+        <div class="cps-card-head">
+          <div>
+            <h2>All lawmakers</h2>
+            <p class="cps-card-sub">Click anyone for their profile, CPS connection and outreach log</p>
+          </div>
+          <div class="cps-filters" id="lm-filters">
+            <select class="dash-select" id="lm-chamber" aria-label="Chamber"><option value="">Both chambers</option><option value="House">House</option><option value="Senate">Senate</option></select>
+            <select class="dash-select" id="lm-party" aria-label="Party"><option value="">All parties</option><option value="R">Republican</option><option value="D">Democrat</option></select>
+            <label class="cps-toggle cps-toggle-check"><input type="checkbox" id="lm-cps"> CPS connection</label>
+          </div>
+        </div>
+        <div class="cps-table-wrap">
+          <table class="cps-table cps-mtable" id="member-table">
+            <thead><tr><th scope="col">Lawmaker</th><th scope="col">Seat</th><th scope="col">Area</th><th scope="col">Role</th><th scope="col">CPS contact</th><th scope="col">Outreach</th></tr></thead>
+            <tbody data-draw="member-grid" data-source="legislators contacts outreach"></tbody>
+          </table>
+        </div>
+        <div class="cps-card-foot"><span>Showing <b data-draw="lm-shown">—</b> lawmakers</span></div>
+      </article>
+    </section>
+  </main>
+</div>
+
+  <datalist id="cps-team" data-draw="team-list" data-source="contacts outreach"></datalist>
+  <datalist id="cps-committees" data-draw="committee-list" data-source="legislators"></datalist>
+
+  <!-- ================= PROFILE DIALOG ================= -->
+  <dialog class="cps-dialog" id="profile-dialog" aria-label="Lawmaker profile">
+    <div class="cps-dlg">
+      <header class="cps-dlg-head">
+        <div data-draw="pf-head" data-source="legislators"></div>
+        <button type="button" class="cps-x" data-close aria-label="Close profile">×</button>
+      </header>
+      <div class="cps-pf-cols">
+        <div class="cps-pf-main">
+          <div data-draw="pf-note" data-source="legislators"></div>
+          <div class="cps-pf-stats" data-draw="pf-stats" data-source="legislators sponsors"></div>
+          <section class="cps-pf-sec" id="pf-session"><h3>Filed this session</h3><div data-draw="pf-bills" data-source="bills"></div></section>
+          <section class="cps-pf-sec" id="pf-leadership"><h3>Leadership</h3><div data-draw="pf-lead" data-source="legislators"></div></section>
+          <section class="cps-pf-sec" id="pf-committees"><h3>Committees</h3><div class="cps-chips" data-draw="pf-committees" data-source="legislators"></div><p class="cps-fine">As listed on the TGA site. 115th General Assembly assignments come after the session organizes in January.</p></section>
+          <section class="cps-pf-sec" id="pf-bio"><h3>Bio</h3><ul class="cps-bio" data-draw="pf-bio" data-source="legislators"></ul></section>
+          <section class="cps-pf-sec" id="pf-contact"><h3>Capitol office</h3><div class="cps-contact" data-draw="pf-contact" data-source="legislators"></div></section>
+          <section class="cps-pf-sec" id="pf-links"><h3>Campaign &amp; social</h3><div class="cps-links" data-draw="pf-links" data-source="legislators"></div><p class="cps-fine">Campaign and social links from Ballotpedia; profile from the TGA site.</p></section>
+        </div>
+        <aside class="cps-pf-side">
+          <section class="cps-box" id="cps-connection">
+            <h3>CPS connection</h3>
+            <div data-draw="pf-connection" data-source="contacts"></div>
+            <details class="cps-edit" id="conn-details">
+              <summary>Edit connection</summary>
+              <form id="conn-form" class="cps-form" autocomplete="off">
+                <label class="cps-fld"><span>CPS team member(s)</span><input name="team" list="cps-team" placeholder="e.g., Dave Cooley"></label>
+                <label class="cps-fld"><span>Connection to the member or staff</span><textarea name="note" rows="3" placeholder="Who they know, how they know them, and the best staff contact"></textarea></label>
+                <div class="cps-form-actions"><button type="submit" class="cps-btn cps-btn-primary">Save connection</button></div>
+                <p class="cps-err" hidden>That wasn’t saved. Only editors of this tracker can save changes.</p>
+              </form>
+            </details>
+          </section>
+          <section class="cps-box" id="cps-outreach">
+            <h3>Outreach log</h3>
+            <ol class="cps-log" data-draw="pf-outreach" data-source="outreach"></ol>
+            <details class="cps-edit" id="log-details">
+              <summary>Log outreach</summary>
+              <form id="log-form" class="cps-form" autocomplete="off">
+                <div class="cps-form-row">
+                  <label class="cps-fld"><span>Date</span><input type="date" name="date" min="2024-01-01" max="2030-12-31" required></label>
+                  <label class="cps-fld"><span>CPS team member</span><input name="by" list="cps-team" required></label>
+                </div>
+                <label class="cps-fld"><span>Contact (member or staff)</span><input name="contact" placeholder="e.g., Chief of staff"></label>
+                <div class="cps-form-row">
+                  <label class="cps-fld"><span>Bill or issue</span><input name="topic" placeholder="e.g., HB 6, PBM reform"></label>
+                  <label class="cps-fld"><span>Result</span>
+                    <select name="result" class="dash-select">
+                      <option value="Supportive">Supportive</option>
+                      <option value="Meeting scheduled">Meeting scheduled</option>
+                      <option value="Follow-up needed">Follow-up needed</option>
+                      <option value="Neutral / listening" selected>Neutral / listening</option>
+                      <option value="No response yet">No response yet</option>
+                      <option value="Opposed">Opposed</option>
+                    </select>
+                  </label>
+                </div>
+                <label class="cps-fld"><span>Notes</span><textarea name="notes" rows="3" placeholder="What was discussed and agreed next steps"></textarea></label>
+                <div class="cps-form-actions"><button type="submit" class="cps-btn cps-btn-primary">Add to log</button></div>
+                <p class="cps-err" hidden>That wasn’t saved. Only editors of this tracker can save changes.</p>
+              </form>
+            </details>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ================= BILL DIALOG ================= -->
+  <dialog class="cps-dialog cps-dialog-sm" id="bill-dialog" aria-label="Edit bill tracking">
+    <div class="cps-dlg">
+      <header class="cps-dlg-head">
+        <div data-draw="bd-head" data-source="bills"></div>
+        <button type="button" class="cps-x" data-close aria-label="Close">×</button>
+      </header>
+      <form id="bill-form" class="cps-form cps-bd" autocomplete="off">
+        <fieldset class="cps-fs">
+          <legend>Why it matters</legend>
+          <label class="cps-fld"><span>Team note</span><textarea name="watch_note" rows="2" placeholder="e.g., Could reach mail-order pharmacies"></textarea></label>
+        </fieldset>
+        <fieldset class="cps-fs">
+          <legend>Clients</legend>
+          <div class="cps-picker" data-draw="bd-clients" data-source="client_counts"></div>
+          <p class="cps-fine cps-fine-tight">Tag <b>General</b> for major legislation the team is monitoring that doesn’t directly affect a client.</p>
+          <div class="cps-form-row cps-addrow">
+            <label class="cps-fld"><span>New client</span><input id="new-client" placeholder="Client name"></label>
+            <button type="button" class="cps-btn" id="add-client">Add client</button>
+          </div>
+        </fieldset>
+        <fieldset class="cps-fs">
+          <legend>Committee hearing</legend>
+          <label class="cps-fld"><span>Committee</span><input name="committee" list="cps-committees" placeholder="e.g., House Health Subcommittee"></label>
+          <div class="cps-form-row">
+            <label class="cps-fld"><span>Date</span><input type="date" name="date" min="2026-11-01" max="2028-12-31"></label>
+            <label class="cps-fld"><span>Time</span><input type="time" name="time"></label>
+          </div>
+          <label class="cps-fld"><span>Room</span><input name="room" placeholder="e.g., House Hearing Room 2, Cordell Hull"></label>
+          <label class="cps-fld"><span>Notes</span><input name="note" placeholder="e.g., On notice; sponsor presenting"></label>
+        </fieldset>
+        <div class="cps-form-actions"><button type="button" class="cps-btn" data-close>Cancel</button><button type="submit" class="cps-btn cps-btn-primary">Save</button></div>
+        <p class="cps-err" hidden>That wasn’t saved. Only editors of this tracker can save changes.</p>
+      </form>
+    </div>
+  </dialog>
+
+  <template id="tpl-detail">
+    <tr class="cps-detail-row"><td colspan="5"><div class="cps-detail">
+      <div class="cps-d-main">
+        <p class="cps-d-h">Summary as introduced</p>
+        <p class="cps-d-sum" data-slot="summary"></p>
+        <div class="cps-note" data-slot="note-wrap"><p class="cps-d-h">Why it matters</p><p data-slot="note"></p></div>
+        <p class="cps-caption" data-slot="caption"></p>
+      </div>
+      <dl class="cps-d-facts">
+        <div><dt>Companion</dt><dd data-slot="companion"></dd></div>
+        <div><dt>Last action</dt><dd data-slot="last"></dd></div>
+        <div><dt>Co-sponsors</dt><dd data-slot="cos"></dd></div>
+        <div><dt>Clients</dt><dd data-slot="clients"></dd></div>
+        <div><dt>Hearing</dt><dd data-slot="hearing"></dd></div>
+        <div><dt>Fiscal note</dt><dd data-slot="fiscal"></dd></div>
+      </dl>
+      <div class="cps-d-actions">
+        <a class="cps-link" data-slot="house-url" target="_blank" rel="noopener">House bill page ↗</a>
+        <a class="cps-link" data-slot="senate-url" target="_blank" rel="noopener">Senate bill page ↗</a>
+        <a class="cps-link" data-slot="pdf" target="_blank" rel="noopener">Bill text (PDF) ↗</a>
+        <button type="button" class="cps-btn cps-btn-primary" data-edit-bill="">Edit clients, note &amp; hearing</button>
+      </div>
+    </div></td></tr>
+  </template>
+</div>
+</div>
+
+<div class="cps-gate" id="cps-gate">
+  <div class="cps-gate-in">
+    <div class="cps-gate-brand">
+      <span class="cps-gate-logo" role="img" aria-label="Cooley Public Strategies"></span>
+      <span class="cps-gate-div" aria-hidden="true"></span>
+      <p class="cps-gate-product"><svg viewBox="-40 -40 80 80" aria-hidden="true"><circle r="39" fill="#fff"/><circle r="35.5" fill="#083995"/><path fill="#fff" d="M-0.46 1.43 -0.46 13.78 11.28 17.59 -0.46 21.41 -0.46 33.76 -7.72 23.77 -19.47 27.59 -12.21 17.59 -19.47 7.60 -7.72 11.42ZM-1.00 -1.11 -11.70 -7.29 -20.88 0.97 -18.31 -11.11 -29.01 -17.28 -16.72 -18.57 -14.16 -30.66 -9.13 -19.37 3.15 -20.66 -6.03 -12.40ZM1.47 -0.31 12.16 -6.49 9.60 -18.57 18.77 -10.30 29.47 -16.48 24.45 -5.20 33.63 3.07 21.34 1.78 16.32 13.06 13.75 0.98Z"/></svg>Legislation Tracker</p>
+    </div>
+    <div class="cps-gate-card">
+      <p class="cps-gate-wait" id="gate-wait" role="status">Checking your sign-in…</p>
+      <form id="gate-pick" hidden autocomplete="off">
+        <h1>Who’s using the tracker?</h1>
+        <label class="cps-gate-fld"><span>Your name</span><select id="gate-name"></select></label>
+        <label class="cps-gate-fld" id="gate-pass-fld" hidden><span>Password</span><input type="password" id="gate-pass" autocomplete="current-password"></label>
+        <button type="submit" class="cps-gate-btn" id="gate-go">Email me a sign-in code</button>
+        <p class="cps-gate-msg" id="gate-msg" role="status"></p>
+      </form>
+      <form id="gate-code" hidden autocomplete="off">
+        <h1>Check your email</h1>
+        <p class="cps-gate-sub">We sent a 6-digit code to <b id="gate-email"></b>. Enter it here to finish signing in on this device.</p>
+        <label class="cps-gate-fld"><span>Sign-in code</span><input id="gate-otp" inputmode="numeric" autocomplete="one-time-code" maxlength="10"></label>
+        <button type="submit" class="cps-gate-btn">Sign in</button>
+        <p class="cps-gate-links"><button type="button" id="gate-resend">Send a new code</button><button type="button" id="gate-back">Pick a different name</button></p>
+        <p class="cps-gate-msg" id="gate-msg2" role="status"></p>
+      </form>
+    </div>
+    <p class="cps-gate-foot">For the Cooley Public Strategies team. You’ll stay signed in on this device.</p>
+  </div>
+</div>
+
+<script src="js/calcs.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/bills.js"></script>
+<script src="js/people.js"></script>
+<script src="js/clients.js"></script>
+<script src="js/home.js"></script>
+<script src="js/signin.js"></script>
+</body>
+</html>
