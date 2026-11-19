@@ -198,18 +198,28 @@ async function run() {
   for (const id of Object.keys(cache.bills)) if (!live.has(Number(id)) && !live.has(id)) delete cache.bills[id];
   writeJson(CACHE, cache);
 
-  // pair House bills with their Senate companions
-  const byNum = new Map(Object.values(cache.bills).map((b) => [b.number, b]));
+  // pair House bills with their Senate companions. LegiScan writes Tennessee numbers
+  // zero-padded (SB0002), so every number is compared in that one form. When LegiScan
+  // hasn't linked a pair yet, a Senate bill with the identical summary is its companion.
+  const bills = Object.values(cache.bills).map((b) => ({ ...b, number: keyOf(b.number), same_as: b.same_as ? keyOf(b.same_as) : '' }));
+  const byNum = new Map(bills.map((b) => [b.number, b]));
+  const descKey = (x) => String(x.description || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  const sbByDesc = new Map();
+  for (const x of bills.filter((b) => b.number.startsWith('SB'))) {
+    const k = descKey(x);
+    if (k.length > 40) sbByDesc.set(k, sbByDesc.has(k) ? null : x);
+  }
   const paired = new Set();
   const groups = [];
-  for (const b of Object.values(cache.bills).filter((x) => x.number.startsWith('HB'))) {
-    const prev = prevByKey.get(keyOf(b.number)) || {};
-    const prevSenate = prev.senate_bill ? prev.senate_bill.replace(/\s+/g, '') : '';
-    const sb = byNum.get(b.same_as) || byNum.get(prevSenate) || null;
-    if (sb && sb.number.startsWith('SB') && !paired.has(sb.number)) paired.add(sb.number);
-    groups.push([b, sb && sb.number.startsWith('SB') ? sb : null]);
+  for (const b of bills.filter((x) => x.number.startsWith('HB')).sort((x, y) => x.number.localeCompare(y.number))) {
+    const prev = prevByKey.get(b.number) || {};
+    const prevSenate = prev.senate_bill ? keyOf(prev.senate_bill.replace(/\s+/g, '')) : '';
+    const pick = (x) => (x && x.number.startsWith('SB') && !paired.has(x.number) ? x : null);
+    const sb = pick(byNum.get(b.same_as)) || pick(byNum.get(prevSenate)) || pick(descKey(b).length > 40 ? sbByDesc.get(descKey(b)) : null);
+    if (sb) paired.add(sb.number);
+    groups.push([b, sb]);
   }
-  for (const b of Object.values(cache.bills).filter((x) => x.number.startsWith('SB') && !paired.has(x.number))) groups.push([null, b]);
+  for (const x of bills.filter((b) => b.number.startsWith('SB') && !paired.has(b.number))) groups.push([null, x]);
 
   const leg = (sp) => {
     if (!sp) return null;
@@ -291,7 +301,7 @@ async function run() {
   }] });
   console.log(`Saved ${out.length} bills: ${newKeys.length} new, ${updated.length} updated, ${queries} LegiScan queries.`);
 
-  await alerts(out, prevByKey, newKeys);
+  await alerts(out, prevByKey, newKeys, legs);
 }
 
 // ---------- important finds for the email ----------
@@ -312,48 +322,105 @@ async function teamTags() {
   }
 }
 
-async function alerts(rows, prevByKey, newKeys) {
+// who sponsored it, in words: "Sen. Joey Hensley (R), Senate District 28, Hohenwald"
+function sponsorText(id, name, party, chamber, legs) {
+  if (!name) return '';
+  const l = legs.find((x) => x.id === id) || {};
+  const title = l.title || (chamber === 'House' ? 'Rep.' : 'Sen.');
+  const seat = l.district ? `, ${chamber} District ${l.district}${l.city ? `, ${l.city}` : ''}` : '';
+  return `${title} ${name}${party ? ` (${party})` : ''}${seat}`;
+}
+const clip = (t, n) => { const x = String(t || '').trim(); return x.length > n ? x.slice(0, n).replace(/\s+\S*$/, '') + '…' : x; };
+
+async function alerts(rows, prevByKey, newKeys, legs) {
   const tags = await teamTags();
-  const lines = [];
+  const items = new Map();
+  const note = (r, why) => { if (!items.has(r.key)) items.set(r.key, { r, why: [] }); items.get(r.key).why.push(why); };
   for (const r of rows.filter((x) => newKeys.includes(x.key) && x.cps_focus)) {
-    lines.push(`New bill on ${r.cps_focus.replace(/; /g, ' and ')}: ${r.bill_numbers}, ${r.title}`);
+    note(r, `New bill on ${r.cps_focus.replace(/; /g, ' and ')}`);
   }
   for (const r of rows) {
-    const clients = tags.get(r.key);
     const p = prevByKey.get(r.key);
-    if (!clients || !p) continue;
-    const who = clients.join(', ');
-    if (p.stage !== r.stage) lines.push(`${r.bill_numbers} (${who}) moved to ${r.stage.toLowerCase()}: ${r.last_action}`);
+    if (!tags.get(r.key) || !p) continue;
+    if (p.stage !== r.stage) note(r, `Moved to ${r.stage.toLowerCase()}`);
     if (r.hearing_date && (p.hearing_date !== r.hearing_date || p.hearing_time !== r.hearing_time)) {
-      lines.push(`${r.bill_numbers} (${who}) is on the calendar: ${[r.hearing_committee, `${day(r.hearing_date)}${r.hearing_time ? ' at ' + time12(r.hearing_time) : ''}`, r.hearing_room].filter(Boolean).join(', ')}`);
+      note(r, `On the committee calendar: ${[r.hearing_committee, `${day(r.hearing_date)}${r.hearing_time ? ' at ' + time12(r.hearing_time) : ''}`, r.hearing_room].filter(Boolean).join(', ')}`);
     }
   }
   const outFile = process.env.GITHUB_OUTPUT;
-  if (!lines.length) { if (outFile) fs.appendFileSync(outFile, 'alert=false\n'); console.log('Nothing important to report.'); return; }
+  if (!items.size) { if (outFile) fs.appendFileSync(outFile, 'alert=false\n'); console.log('Nothing important to report.'); return; }
+
   const repo = process.env.GITHUB_REPOSITORY || '';
   const site = process.env.SITE_URL || (repo ? `https://${repo.split('/')[0].toLowerCase()}.github.io/${repo.split('/')[1]}/` : '');
-  const title = `Legislation Tracker: ${lines.length} important update${lines.length === 1 ? '' : 's'}`;
-  const body = [title, '', ...lines.map((l) => `- ${l}`), '', site ? `Open the tracker: ${site}` : '', 'Bill data from LegiScan (CC BY 4.0).'].join('\n');
-  fs.writeFileSync(path.join(ROOT, 'alert.txt'), body);
+  const list = [...items.values()];
+  const title = `Legislation Tracker: ${list.length} important update${list.length === 1 ? '' : 's'}`;
+  const details = list.map(({ r, why }) => {
+    const cos = String(r.house_cosponsors || '').split(';').map((x) => x.trim()).filter(Boolean);
+    return {
+      r,
+      why,
+      heading: `${r.bill_numbers}: ${r.title}`,
+      facts: [
+        ['House sponsor', sponsorText(r.house_sponsor_id, r.house_sponsor, r.house_party, 'House', legs) || 'None filed yet'],
+        ['Senate sponsor', sponsorText(r.senate_sponsor_id, r.senate_sponsor, r.senate_party, 'Senate', legs) || 'None filed yet'],
+        cos.length ? ['Co-sponsors', cos.length > 4 ? `${cos.slice(0, 4).join(', ')} and ${cos.length - 4} more` : cos.join(', ')] : null,
+        tags.get(r.key) ? ['Clients', tags.get(r.key).join(', ')] : null,
+        ['Topics', String(r.topics || '').replace(/; /g, ', ')],
+        ['Filed', day(r.filed_date)],
+        ['Latest action', `${r.last_action || r.status}${r.last_action_date ? ` (${day(r.last_action_date)})` : ''}`],
+      ].filter((f) => f && f[1]),
+      summary: clip(r.summary, 420),
+      link: r.house_url || r.senate_url || '',
+    };
+  });
+
+  const text = [
+    title, '',
+    ...details.flatMap((d) => [
+      d.heading,
+      ...d.why.map((w) => `  ${w}`),
+      ...d.facts.map(([k, v]) => `  ${k}: ${v}`),
+      d.summary ? `  ${d.summary}` : '',
+      d.link ? `  Bill page: ${d.link}` : '',
+      '',
+    ]),
+    site ? `Open the tracker: ${site}` : '',
+    'Bill data from LegiScan (CC BY 4.0).',
+  ].filter((l, i, a) => !(l === '' && a[i - 1] === '')).join('\n');
+  fs.writeFileSync(path.join(ROOT, 'alert.txt'), text);
   if (outFile) fs.appendFileSync(outFile, `alert=true\nsubject=${title}\n`);
-  console.log(body);
-  await postToTeams(title, lines, site);
+  console.log(text);
+  await postToTeams(title, details, site);
 }
 
 // The Teams channel's "Post to a channel when a webhook request is received" workflow
-// expects one or more Adaptive Cards in an attachments list.
-async function postToTeams(title, lines, site) {
+// expects one or more Adaptive Cards in an attachments list. One card, one section per bill.
+async function postToTeams(title, details, site) {
   const url = process.env.TEAMS_WEBHOOK_URL || '';
   if (!url) { console.log('No TEAMS_WEBHOOK_URL, so no Teams post.'); return; }
+  const MAX = 12;
+  const shown = details.slice(0, MAX);
   const card = {
     $schema: 'http://adaptivecards.io/schemas/adaptive-card.json',
     type: 'AdaptiveCard',
     version: '1.2',
     body: [
-      { type: 'TextBlock', text: title, weight: 'Bolder', size: 'Medium', wrap: true },
-      ...lines.map((l) => ({ type: 'TextBlock', text: `- ${l}`, wrap: true, spacing: 'Small' })),
+      { type: 'TextBlock', text: title, weight: 'Bolder', size: 'Large', wrap: true },
+      ...shown.map((d) => ({
+        type: 'Container',
+        separator: true,
+        spacing: 'Large',
+        items: [
+          { type: 'TextBlock', text: d.heading, weight: 'Bolder', size: 'Medium', wrap: true },
+          ...d.why.map((w) => ({ type: 'TextBlock', text: w, color: 'Accent', weight: 'Bolder', wrap: true, spacing: 'Small' })),
+          { type: 'FactSet', spacing: 'Medium', facts: d.facts.map(([k, v]) => ({ title: k, value: v })) },
+          d.summary ? { type: 'TextBlock', text: d.summary, isSubtle: true, wrap: true, spacing: 'Medium' } : null,
+          d.link ? { type: 'TextBlock', text: `[Open the bill page on capitol.tn.gov](${d.link})`, wrap: true, spacing: 'Small' } : null,
+        ].filter(Boolean),
+      })),
+      details.length > MAX ? { type: 'TextBlock', text: `Plus ${details.length - MAX} more. Open the tracker to see them all.`, wrap: true, separator: true } : null,
       { type: 'TextBlock', text: 'Bill data from LegiScan (CC BY 4.0)', isSubtle: true, size: 'Small', wrap: true, spacing: 'Medium' },
-    ],
+    ].filter(Boolean),
     actions: site ? [{ type: 'Action.OpenUrl', title: 'Open the tracker', url: site }] : [],
   };
   try {
