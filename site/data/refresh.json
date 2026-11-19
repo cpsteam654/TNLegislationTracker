@@ -2,12 +2,13 @@
  "rows": [
   {
    "id": "latest",
-   "status": "waiting",
-   "message": "Waiting for the first scheduled update",
-   "last_success": "",
-   "last_run": "",
-   "new_bills": 0,
-   "updated_bills": 0
+   "status": "ok",
+   "message": "3 new and 18 updated bills",
+   "last_success": "2026-11-19T20:43:08.845Z",
+   "last_run": "2026-11-19T20:43:08.845Z",
+   "new_bills": 3,
+   "updated_bills": 18,
+   "queries": 23
   }
  ]
 }

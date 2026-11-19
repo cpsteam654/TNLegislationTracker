@@ -1,0 +1,670 @@
+{
+ "session_id": 2277,
+ "bills": {
+  "2161637": {
+   "bill_id": 2161637,
+   "change_hash": "1dbb172c1958d6208cbe62d2ada53abe",
+   "number": "HB0004",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 4, relative to honoring Dolly Parton.",
+   "description": "As introduced, requires the state capitol commission to erect a statue of Dolly Parton on the capitol grounds. - Amends TCA Title 4.",
+   "subjects": [
+    "Capitol"
+   ],
+   "status": 1,
+   "introduced": "2026-11-04",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-04",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Sam McKenzie",
+     "party": "D",
+     "district": "HD-015",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0004.pdf",
+   "fiscal_url": ""
+  },
+  "2161638": {
+   "bill_id": 2161638,
+   "change_hash": "faf30efdf6a27cfc561f3330b4b2da6c",
+   "number": "HB0002",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 4, Chapter 5, Part 2 and Title 68, relative to water quality.",
+   "description": "As introduced, enacts the \"Endocrine-Disrupting Pharmaceuticals Water Safety Act\" to require the department of environment and conservation to establish a list of endocrine-disrupting pharmaceuticals of concern, require public water and wastewater treatment facilities to test for the presence of such pharmaceuticals in treated water, and require further research if such pharmaceuticals are detected. - Amends TCA Title 4, Chapter 5, Part 2 and Title 68.",
+   "subjects": [
+    "Water Pollution"
+   ],
+   "status": 1,
+   "introduced": "2026-11-04",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-04",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Chris Todd",
+     "party": "R",
+     "district": "HD-073",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0002.pdf",
+   "fiscal_url": ""
+  },
+  "2161639": {
+   "bill_id": 2161639,
+   "change_hash": "c015c939bd7b0d351df0be8a02bfbcb5",
+   "number": "HB0005",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 4; Title 9 and Title 67, relative to taxation.",
+   "description": "As introduced, allows the division of property assessment to send the annual report, with the appropriate summary of the work accomplished by the division and any appropriate recommendations, to the state board of equalization in electronic format. - Amends TCA Title 4; Title 9 and Title 67.",
+   "subjects": [
+    "Taxes"
+   ],
+   "status": 1,
+   "introduced": "2026-11-05",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-05",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Chris Todd",
+     "party": "R",
+     "district": "HD-073",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0005.pdf",
+   "fiscal_url": ""
+  },
+  "2161640": {
+   "bill_id": 2161640,
+   "change_hash": "73182df97491da235f9706fb29843d31",
+   "number": "HB0001",
+   "title": "AN ACT to amend Tennessee Code Annotated, Section 29-39-102, relative to civil damage awards.",
+   "description": "As introduced, creates a statutory damage award of $1 million to a patient or other wrongful death beneficiary if the patient or other wrongful death beneficiary proves by a preponderance of the evidence that a defendant sent an abortion-inducing drug into this state to the patient via courier, delivery, or mail service and the drug caused the death of an unborn child. - Amends TCA Section 29-39-102.",
+   "subjects": [
+    "Damages"
+   ],
+   "status": 1,
+   "introduced": "2026-11-04",
+   "last_action": "Sponsor(s) Added.",
+   "last_action_date": "2026-11-19",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Gino Bulso",
+     "party": "R",
+     "district": "HD-061",
+     "type": 1,
+     "order": 1
+    },
+    {
+     "name": "Aron Maberry",
+     "party": "R",
+     "district": "HD-068",
+     "type": 2,
+     "order": 2
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0001.pdf",
+   "fiscal_url": ""
+  },
+  "2161641": {
+   "bill_id": 2161641,
+   "change_hash": "bc21c82eae9bdcf72d4b7c7a60c454e7",
+   "number": "HB0006",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 67, Chapter 6, relative to food and food ingredients.",
+   "description": "As introduced, exempts the retail sale of milk, eggs, and bread for human consumption from the food retail sales tax. - Amends TCA Title 67, Chapter 6.",
+   "subjects": [
+    "Taxes, Sales"
+   ],
+   "status": 1,
+   "introduced": "2026-11-05",
+   "last_action": "Sponsor(s) Added.",
+   "last_action_date": "2026-11-18",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Cameron Sexton",
+     "party": "R",
+     "district": "HD-025",
+     "type": 1,
+     "order": 1
+    },
+    {
+     "name": "Tim Hicks",
+     "party": "R",
+     "district": "HD-006",
+     "type": 2,
+     "order": 2
+    },
+    {
+     "name": "William Lamberth",
+     "party": "R",
+     "district": "HD-044",
+     "type": 2,
+     "order": 3
+    },
+    {
+     "name": "Sabi Kumar",
+     "party": "R",
+     "district": "HD-066",
+     "type": 2,
+     "order": 4
+    },
+    {
+     "name": "Aron Maberry",
+     "party": "R",
+     "district": "HD-068",
+     "type": 2,
+     "order": 5
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0006.pdf",
+   "fiscal_url": ""
+  },
+  "2161642": {
+   "bill_id": 2161642,
+   "change_hash": "f6d67f4ad6fb60465988f7cb6758dd26",
+   "number": "HB0003",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 4; Title 10, Chapter 7; Title 20; Title 28; Title 29; Title 39; Title 40; Title 47 and Title 68, relative to unauthorized intimate images.",
+   "description": "As introduced, expands the definition of an intimate digital depiction to include digital depictions of an individual that appear to depict body parts that are visible through less than fully opaque clothing. - Amends TCA Title 4; Title 10, Chapter 7; Title 20; Title 28; Title 29; Title 39; Title 40; Title 47 and Title 68.",
+   "subjects": [
+    "Criminal Offenses"
+   ],
+   "status": 1,
+   "introduced": "2026-11-04",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-04",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Chris Todd",
+     "party": "R",
+     "district": "HD-073",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0003.pdf",
+   "fiscal_url": ""
+  },
+  "2161643": {
+   "bill_id": 2161643,
+   "change_hash": "56e9c4fb709ce51d5b35a475ab71e5ed",
+   "number": "SB0002",
+   "title": "AN ACT to amend Tennessee Code Annotated, Section 29-39-102, relative to civil damage awards.",
+   "description": "As introduced, creates a statutory damage award of $1 million to a patient or other wrongful death beneficiary if the patient or other wrongful death beneficiary proves by a preponderance of the evidence that a defendant sent an abortion-inducing drug into this state to the patient via courier, delivery, or mail service and the drug caused the death of an unborn child. - Amends TCA Section 29-39-102.",
+   "subjects": [
+    "Damages"
+   ],
+   "status": 1,
+   "introduced": "2026-11-04",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-04",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Joseph Hensley",
+     "party": "R",
+     "district": "SD-028",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0002.pdf",
+   "fiscal_url": ""
+  },
+  "2161644": {
+   "bill_id": 2161644,
+   "change_hash": "4eb4d9e5ebb4f512abedb9e5222dacc6",
+   "number": "SB0001",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 55, Chapter 50, Part 3, relative to the issuance of temporary licenses and permits.",
+   "description": "As introduced, allows the department to issue a temporary driver license, temporary intermediate driver license, temporary photo identification license, or a temporary learner permit to persons authorized by the federal government to work in the United States; establishes that an employment authorization document qualifies as proof of such authorization; makes other related revisions. - Amends TCA Title 55, Chapter 50, Part 3.",
+   "subjects": [
+    "Driver Licenses"
+   ],
+   "status": 1,
+   "introduced": "2026-11-05",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-05",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Becky Massey",
+     "party": "R",
+     "district": "SD-006",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0001.pdf",
+   "fiscal_url": ""
+  },
+  "2161655": {
+   "bill_id": 2161655,
+   "change_hash": "2ecc45898e61cdba1de7fb3059402854",
+   "number": "SB0003",
+   "title": "AN ACT to amend Tennessee Code Annotated, Section 1-3-105; Title 10; Title 43 and Title 47, relative to agricultural data.",
+   "description": "As introduced, enacts the \"Agricultural Data Privacy Act\"; requires persons to obtain consent from an agricultural producer before selling the producer's agricultural data. - Amends TCA Section 1-3-105; Title 10; Title 43 and Title 47.",
+   "subjects": [
+    "Privacy, Confidentiality"
+   ],
+   "status": 1,
+   "introduced": "2026-11-09",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-09",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Page Walley",
+     "party": "R",
+     "district": "SD-026",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0003.pdf",
+   "fiscal_url": ""
+  },
+  "2161667": {
+   "bill_id": 2161667,
+   "change_hash": "9eca2dc70037094fce9e43a61f711a41",
+   "number": "SB0004",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 29, relative to settlement agreements.",
+   "description": "As introduced, declares a provision in a settlement agreement that has the effect of prohibiting the disclosure of the identities of persons relating to a claim by the parties to be void and unenforceable as contrary to the public policy of this state, except with regard to identifying information concerning a victim of sexual harassment or a criminal offense that is sexual in nature. - Amends TCA Title 29.",
+   "subjects": [
+    "Tort Liability and Reform"
+   ],
+   "status": 1,
+   "introduced": "2026-11-09",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-09",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Page Walley",
+     "party": "R",
+     "district": "SD-026",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0004.pdf",
+   "fiscal_url": ""
+  },
+  "2162153": {
+   "bill_id": 2162153,
+   "change_hash": "bce27cb445d8f3485d9d14bf6c33f006",
+   "number": "HB0007",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 67, Chapter 6, relative to sales tax exemptions.",
+   "description": "As introduced, increases the sales tax exemption threshold on computers during the annual sales tax holiday from $1,500 to $2,500. - Amends TCA Title 67, Chapter 6.",
+   "subjects": [
+    "Taxes, Sales"
+   ],
+   "status": 1,
+   "introduced": "2026-11-10",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-10",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Kevin Raper",
+     "party": "R",
+     "district": "HD-024",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0007.pdf",
+   "fiscal_url": ""
+  },
+  "2162587": {
+   "bill_id": 2162587,
+   "change_hash": "af14b0a4b800f119e59e0caa235dccb6",
+   "number": "HB0008",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 55, Chapter 10, Part 4 and Title 57, relative to beer.",
+   "description": "As introduced, permits the operator of a motor vehicle to possess and consume a nonalcoholic beer while operating the motor vehicle. - Amends TCA Title 55, Chapter 10, Part 4 and Title 57.",
+   "subjects": [
+    "Beer"
+   ],
+   "status": 1,
+   "introduced": "2026-11-10",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-10",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Kevin Raper",
+     "party": "R",
+     "district": "HD-024",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0008.pdf",
+   "fiscal_url": ""
+  },
+  "2163021": {
+   "bill_id": 2163021,
+   "change_hash": "abbd62b9a6617196dbe9712ae1a73fee",
+   "number": "HB0009",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 15, Chapter 2, relative to designating April as \"Donate Life Month\" in this state.",
+   "description": "As introduced, designates the month of April as \"Donate Life Month\" in this state. - Amends TCA Title 15, Chapter 2.",
+   "subjects": [
+    "Holidays and Days of Special Observance"
+   ],
+   "status": 1,
+   "introduced": "2026-11-10",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-10",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Kevin Raper",
+     "party": "R",
+     "district": "HD-024",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0009.pdf",
+   "fiscal_url": ""
+  },
+  "2163264": {
+   "bill_id": 2163264,
+   "change_hash": "45579eb7365f8634346f543a620ab60b",
+   "number": "SB0006",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 39 and Title 40, relative to sentencing for first degree murder involving child victims.",
+   "description": "As introduced, alters the possible sentences for first degree murder of a child victim when committed by an adult by removing imprisonment for life with possibility of parole, so that the offense must be punished by death or imprisonment for life without possibility of parole. - Amends TCA Title 39 and Title 40.",
+   "subjects": [
+    "Sentencing"
+   ],
+   "status": 1,
+   "introduced": "2026-11-12",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-12",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Robert Harshbarger",
+     "party": "R",
+     "district": "SD-004",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0006.pdf",
+   "fiscal_url": ""
+  },
+  "2163273": {
+   "bill_id": 2163273,
+   "change_hash": "2305677dda5ae3fef751194c1e210ab6",
+   "number": "SB0005",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 67, Chapter 6, relative to taxation.",
+   "description": "As introduced, changes the annual date by which the department of revenue is required to report its findings and recommendations to the general assembly regarding sales tax collections for electronic nicotine delivery devices from February 1 to January 15 of each year. - Amends TCA Title 67, Chapter 6.",
+   "subjects": [
+    "Taxes"
+   ],
+   "status": 1,
+   "introduced": "2026-11-10",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-10",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Page Walley",
+     "party": "R",
+     "district": "SD-026",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0005.pdf",
+   "fiscal_url": ""
+  },
+  "2163504": {
+   "bill_id": 2163504,
+   "change_hash": "cc58a824a52ec4348d2438300ffcdda8",
+   "number": "SB0007",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 10, Chapter 7, Part 5; Section 47-9-311; Title 55 and Title 69, relative to vessels.",
+   "description": "As introduced, enacts the \"Tennessee Certificate of Title for Vessels Act;\" beginning July 1, 2028, requires each owner of a vessel to apply for a certificate of title for the vessel to the wildlife resources agency; establishes a Local Abandoned Vessel Prevention Fund to award grants to local governments for the costs of removal or recovery of abandoned vessels from the waters of Tennessee; makes other related revisions. - Amends TCA Title 10, Chapter 7, Part 5; Section 47-9-311; Title 55 and Title 69.",
+   "subjects": [
+    "Boats, Boating"
+   ],
+   "status": 1,
+   "introduced": "2026-11-16",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-16",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Tom Hatcher",
+     "party": "R",
+     "district": "SD-002",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0007.pdf",
+   "fiscal_url": ""
+  },
+  "2163641": {
+   "bill_id": 2163641,
+   "change_hash": "22f6d35f465da0794940ce7b61d20ef0",
+   "number": "HB0010",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 57 and Title 67, relative to taxation.",
+   "description": "As introduced, enacts the \"Ending the Grocery Tax by Closing Corporate Loopholes Act.\" - Amends TCA Title 57 and Title 67.",
+   "subjects": [
+    "Taxes"
+   ],
+   "status": 1,
+   "introduced": "2026-11-17",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-17",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Aftyn Behn",
+     "party": "D",
+     "district": "HD-051",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0010.pdf",
+   "fiscal_url": ""
+  },
+  "2163646": {
+   "bill_id": 2163646,
+   "change_hash": "f0c67013668ef5c7136022dd6b28adbe",
+   "number": "HB0011",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 36; Title 39 and Title 40, relative to sexual offenses.",
+   "description": "As introduced, expands the definition of \"mentally incapacitated\" in regard to certain sexual offenses to include a person who is rendered temporarily incapable of consenting, or of appraising, understanding, or controlling the person's conduct due to the influence of alcohol, a narcotic, anesthetic, or other substance or combination of substances regardless of whether the person consumed the substance voluntarily or it was administered to the person without the person's knowledge or consent. - Amends TCA Title 36; Title 39 and Title 40.",
+   "subjects": [
+    "Sexual Offenses"
+   ],
+   "status": 1,
+   "introduced": "2026-11-17",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-17",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Aftyn Behn",
+     "party": "D",
+     "district": "HD-051",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0011.pdf",
+   "fiscal_url": ""
+  },
+  "2163800": {
+   "bill_id": 2163800,
+   "change_hash": "c6d0e2aef396ff12c5e801dcbe75a7a1",
+   "number": "SB0008",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 15, Chapter 2, relative to days of special observance.",
+   "description": "As introduced, designates September 25 of each year as \"9 to 5 Day\". - Amends TCA Title 15, Chapter 2.",
+   "subjects": [
+    "Holidays and Days of Special Observance"
+   ],
+   "status": 1,
+   "introduced": "2026-11-18",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-18",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Jessie Seal",
+     "party": "R",
+     "district": "SD-008",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/SB0008.pdf",
+   "fiscal_url": ""
+  },
+  "2164152": {
+   "bill_id": 2164152,
+   "change_hash": "e7e3a3cbf2e2311f2cf763649b7612c8",
+   "number": "HB0012",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 48 and Title 67, Chapter 5, relative to real property taxes.",
+   "description": "As introduced, allows for the comptroller of the treasury to submit the annual estimate of the cost of the tax relief program under current program parameters to the members of the general assembly via electronic means. - Amends TCA Title 48 and Title 67, Chapter 5.",
+   "subjects": [
+    "Taxes, Real Property"
+   ],
+   "status": 1,
+   "introduced": "2026-11-19",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-19",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Jason Zachary",
+     "party": "R",
+     "district": "HD-014",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0012.pdf",
+   "fiscal_url": ""
+  },
+  "2164160": {
+   "bill_id": 2164160,
+   "change_hash": "47d38f2e6544ed4ba95c1117542e142c",
+   "number": "HB0013",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 67, Chapter 6, relative to food and food ingredients.",
+   "description": "As introduced, eliminates the state sales tax on the retail sale of food and food ingredients sold as fresh or frozen produce; fresh or frozen poultry, fish, and lean cuts of raw meat; eggs; dairy; whole grains; plant-based proteins, including dried or canned legumes; and bread. - Amends TCA Title 67, Chapter 6.",
+   "subjects": [
+    "Taxes, Sales"
+   ],
+   "status": 1,
+   "introduced": "2026-11-19",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-19",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Todd Warner",
+     "party": "R",
+     "district": "HD-092",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0013.pdf",
+   "fiscal_url": ""
+  }
+ }
+}
