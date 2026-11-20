@@ -93,7 +93,7 @@
   },
   "2161640": {
    "bill_id": 2161640,
-   "change_hash": "73182df97491da235f9706fb29843d31",
+   "change_hash": "6a18ac91d52e8ad664d81519cf121f22",
    "number": "HB0001",
    "title": "AN ACT to amend Tennessee Code Annotated, Section 29-39-102, relative to civil damage awards.",
    "description": "As introduced, creates a statutory damage award of $1 million to a patient or other wrongful death beneficiary if the patient or other wrongful death beneficiary proves by a preponderance of the evidence that a defendant sent an abortion-inducing drug into this state to the patient via courier, delivery, or mail service and the drug caused the death of an unborn child. - Amends TCA Section 29-39-102.",
@@ -121,6 +121,13 @@
      "district": "HD-068",
      "type": 2,
      "order": 2
+    },
+    {
+     "name": "Bryan Terry",
+     "party": "R",
+     "district": "HD-048",
+     "type": 2,
+     "order": 3
     }
    ],
    "same_as": "",
@@ -664,6 +671,126 @@
    "same_as": "",
    "hearings": [],
    "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0013.pdf",
+   "fiscal_url": ""
+  },
+  "2164168": {
+   "bill_id": 2164168,
+   "change_hash": "eb827edbf06e993a2e464ebaa5135e7e",
+   "number": "HB0014",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 39, Chapter 17, Part 13 and Title 49, relative to law enforcement officers carrying firearms on school property.",
+   "description": "As introduced, removes the requirement for a law enforcement officer who is not engaged in the actual discharge of official duties and carries a firearm onto school grounds or inside a school building during regular school hours to immediately inform the school principal of the officer's presence on school grounds or inside the school building while in possession of a firearm. - Amends TCA Title 39, Chapter 17, Part 13 and Title 49.",
+   "subjects": [
+    "Firearms and Ammunition"
+   ],
+   "status": 1,
+   "introduced": "2026-11-19",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-19",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Fred Atchley",
+     "party": "R",
+     "district": "HD-012",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0014.pdf",
+   "fiscal_url": ""
+  },
+  "2164173": {
+   "bill_id": 2164173,
+   "change_hash": "a1131055d7babb4d3068966cb3f42f04",
+   "number": "HB0017",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 40, Chapter 23, relative to the death penalty.",
+   "description": "As introduced, allows a person who commits an offense or has committed an offense for which the person is sentenced to the punishment of death to elect to be executed by firing squad by signing a written waiver waiving the right to be executed by lethal injection or electrocution. - Amends TCA Title 40, Chapter 23.",
+   "subjects": [
+    "Criminal Procedure"
+   ],
+   "status": 1,
+   "introduced": "2026-11-19",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-19",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Paul Sherrell",
+     "party": "R",
+     "district": "HD-043",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0017.pdf",
+   "fiscal_url": ""
+  },
+  "2164194": {
+   "bill_id": 2164194,
+   "change_hash": "4a1651819cd597ae1364bcbeec88ab20",
+   "number": "HB0016",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 49 and Title 55, relative to school transportation.",
+   "description": "As introduced, allows, as an alternative to undergoing an annual physical and mental examination, a school bus driver to verify to the local board of education that they possess a valid certificate issued by a medical examiner certified by the Federal Motor Carrier Safety Administration within the United States department of transportation signifying that the school bus driver is medically qualified to operate a commercial motor vehicle. - Amends TCA Title 49 and Title 55.",
+   "subjects": [
+    "School Transportation"
+   ],
+   "status": 1,
+   "introduced": "2026-11-19",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-19",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "William Slater",
+     "party": "R",
+     "district": "HD-035",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0016.pdf",
+   "fiscal_url": ""
+  },
+  "2164199": {
+   "bill_id": 2164199,
+   "change_hash": "dd3d678a77016a0d735bc98716155e76",
+   "number": "HB0015",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 15, Chapter 2, relative to days of special observance.",
+   "description": "As introduced, designates September 25 of each year as \"9 to 5 Day\". - Amends TCA Title 15, Chapter 2.",
+   "subjects": [
+    "Holidays and Days of Special Observance"
+   ],
+   "status": 1,
+   "introduced": "2026-11-19",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-19",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Fred Atchley",
+     "party": "R",
+     "district": "HD-012",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0015.pdf",
    "fiscal_url": ""
   }
  }
