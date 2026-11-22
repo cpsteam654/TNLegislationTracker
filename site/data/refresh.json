@@ -4,8 +4,8 @@
    "id": "latest",
    "status": "ok",
    "message": "0 new and 0 updated bills",
-   "last_success": "2026-11-22T21:00:30.896Z",
-   "last_run": "2026-11-22T21:00:30.896Z",
+   "last_success": "2026-11-22T23:29:03.615Z",
+   "last_run": "2026-11-22T23:29:03.615Z",
    "new_bills": 0,
    "updated_bills": 0,
    "queries": 2
