@@ -3,12 +3,12 @@
   {
    "id": "latest",
    "status": "ok",
-   "message": "0 new and 0 updated bills",
-   "last_success": "2026-11-23T03:41:03.026Z",
-   "last_run": "2026-11-23T03:41:03.026Z",
-   "new_bills": 0,
+   "message": "1 new and 0 updated bills",
+   "last_success": "2026-11-24T02:08:48.558Z",
+   "last_run": "2026-11-24T02:08:48.558Z",
+   "new_bills": 1,
    "updated_bills": 0,
-   "queries": 2
+   "queries": 3
   }
  ]
 }

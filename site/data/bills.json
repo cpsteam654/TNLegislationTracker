@@ -1,6 +1,43 @@
 {
  "rows": [
   {
+   "key": "HB0018",
+   "house_bill": "HB 18",
+   "senate_bill": "",
+   "bill_numbers": "HB 18",
+   "title": "Directs the bureau to establish a temporary TennCare benefits program to provide medical…",
+   "subject": "TennCare",
+   "summary": "As introduced, directs the bureau to establish a temporary TennCare benefits program to provide medical assistance on a temporary basis to certain individuals who do not qualify for enrollment in TennCare, CoverKids, or a successor program; requires the bureau to submit a waiver to the federal centers for medicare and medicaid services by December 31, 2027. - Amends TCA Title 71, Chapter 5.",
+   "caption": "AN ACT to amend Tennessee Code Annotated, Title 71, Chapter 5, relative to TennCare.",
+   "topics": "Health care",
+   "primary_topic": "Health care",
+   "cps_focus": "Health care",
+   "cps_note": "",
+   "house_sponsor": "Charlie Baum",
+   "house_sponsor_id": "H37",
+   "house_party": "R",
+   "house_cosponsors": "",
+   "house_cosponsor_ids": "",
+   "senate_sponsor": "",
+   "senate_sponsor_id": "",
+   "senate_party": "",
+   "sponsor_party": "Republican",
+   "companion": "No Senate companion yet",
+   "status": "Filed for introduction",
+   "stage": "Filed",
+   "filed_date": "2026-11-23",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-23",
+   "fiscal_note": "Not yet available",
+   "house_url": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=HB0018&ga=115",
+   "senate_url": "",
+   "bill_text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0018.pdf",
+   "hearing_committee": "",
+   "hearing_date": "",
+   "hearing_time": "",
+   "hearing_room": ""
+  },
+  {
    "key": "HB0012",
    "house_bill": "HB 12",
    "senate_bill": "",
@@ -859,7 +896,7 @@
   },
   {
    "label": "Updated",
-   "value": "2026-11-23T03:41:03.026Z"
+   "value": "2026-11-24T02:08:48.531Z"
   }
  ]
 }

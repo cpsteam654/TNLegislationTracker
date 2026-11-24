@@ -792,6 +792,36 @@
    "hearings": [],
    "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0015.pdf",
    "fiscal_url": ""
+  },
+  "2164410": {
+   "bill_id": 2164410,
+   "change_hash": "91863ae07094810887783782d53f13cd",
+   "number": "HB0018",
+   "title": "AN ACT to amend Tennessee Code Annotated, Title 71, Chapter 5, relative to TennCare.",
+   "description": "As introduced, directs the bureau to establish a temporary TennCare benefits program to provide medical assistance on a temporary basis to certain individuals who do not qualify for enrollment in TennCare, CoverKids, or a successor program; requires the bureau to submit a waiver to the federal centers for medicare and medicaid services by December 31, 2027. - Amends TCA Title 71, Chapter 5.",
+   "subjects": [
+    "TennCare"
+   ],
+   "status": 1,
+   "introduced": "2026-11-23",
+   "last_action": "Filed for introduction",
+   "last_action_date": "2026-11-23",
+   "in_committee": false,
+   "signed": false,
+   "committee": "",
+   "sponsors": [
+    {
+     "name": "Charlie Baum",
+     "party": "R",
+     "district": "HD-037",
+     "type": 1,
+     "order": 1
+    }
+   ],
+   "same_as": "",
+   "hearings": [],
+   "text_url": "https://www.capitol.tn.gov/Bills/115/Bill/HB0018.pdf",
+   "fiscal_url": ""
   }
  }
 }
